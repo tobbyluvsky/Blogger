@@ -21,5 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin/login','AdminLoginController@adminLogin')->name(('adminLogin'));
-Route::get('/admin/dashboard','AdminLoginController@adminDashboard')->name(('adminDashboard'));
+
+Route::prefix('/admin')->group(function (){
+
+    Route::match(['get','post'], '/login', 'AdminLoginController@adminLogin')->name('adminLogin');
+
+    Route::group(['middleware' => ['admin']],function (){
+        //admin dashboard
+        Route::get('/dashboard','AdminLoginController@dashboard')->name(('adminDashboard'));
+    });
+});
+
+Route::get('/admin/logout', 'AdminLoginController@adminLogout')->name('adminLogout');

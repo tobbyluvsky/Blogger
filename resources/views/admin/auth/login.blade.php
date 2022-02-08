@@ -47,10 +47,11 @@
                     <p class="account-subtitle">Access to our dashboard</p>
 
                     <!-- Account Form -->
-                    <form action="index.html">
+                    <form method="post" action="{{route('adminLogin')}}">
+                        @csrf
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input class="form-control" type="text">
+                            <input class="form-control" type="email" name="email">
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -63,7 +64,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <input class="form-control" type="password">
+                            <input class="form-control" type="password" name="password">
                         </div>
                         <div class="form-group text-center">
                             <button class="btn btn-primary account-btn" type="submit">Login</button>
