@@ -13,3 +13,4 @@
 
 @include('admin.includes.script');
 
+@yield('js')
