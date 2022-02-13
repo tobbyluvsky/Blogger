@@ -41,6 +41,9 @@
                                         <label for="parent_id">Under Category</label>
                                             <select name="parent_id" id="parent_id" class="select form-control">
                                                 <option value="0" >Main Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}" >{{ $category->category_name }}</option>
+                                                @endforeach
 
                                             </select>
                                     </div>

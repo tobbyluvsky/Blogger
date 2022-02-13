@@ -6,17 +6,20 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 
 class CategoryController extends Controller
 {
     public function index(){
         Session::put('admin_page', 'category');
-        return view('admin.category.index');
+        $categories = Category::latest()->get();
+        return view('admin.category.index',compact('categories'));
     }
 
     public function addCategory(){
-        return view('admin.category.add');
+        $categories = Category::where('parent_id',0)->get();
+        return view('admin.category.add',compact('categories'));
     }
 
     public function store(Request $request){
@@ -56,4 +59,38 @@ class CategoryController extends Controller
         Session::flash('success_message','Category page updated successfully');
         return redirect()->back();
     }
+
+
+
+//    public function datatable(){
+//        $catTable = Category::all();
+//        return Datatables::of($catTable)
+//            ->addColumn('action',function ($catTable){
+//                return view('admin.category._actions',[
+//                   'catTable' => $catTable,
+//                    'url_show' =>route('category,show',$catTable->id)
+//                ]);
+//            })
+//            ->editColumn('parent_id',function ($catTable){
+//                if ($catTable->parent_id == 0){
+//                    return "Main Category";
+//                }else{
+//                    return $catTable->subCategory->category_name;
+//                }
+//            })
+//            ->addIndexColumn()
+//            ->rawColumns(['action'])
+//            ->make(true);
+//    }
+
+//    public function show($id){
+//        $catTable = Category::findorFail($id);
+//        return view('admin.category.show',compact('catTable'));
+//    }
+
+
+
+
+
+
 }

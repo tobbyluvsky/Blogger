@@ -36,43 +36,52 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped custom-table datatable">
+                        <table class="datatable table table-striped custom-table id">
                             <thead>
                             <tr>
-                                <th>S/N/th>
+                                <th>S/N</th>
                                 <th>Category Name</th>
                                 <th>Under Category</th>
+                                <th>Priority</th>
                                 <th>Status</th>
-                                <th class="text-right">Action</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($categories as $category)
                             <tr>
-                                <td>1</td>
-                                <td>football</td>
-                                <td>sport</td>
+                                <td>{{$loop->index + 1}}</td>
+                                <td>{{$category->category_name}}</td>
                                 <td>
-{{--                                    <div class="dropdown action-label">--}}
-{{--                                        <a href="clients-list.html#" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i> Active </a>--}}
-{{--                                        <div class="dropdown-menu">--}}
-{{--                                            <a class="dropdown-item" href="clients-list.html#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>--}}
-{{--                                            <a class="dropdown-item" href="clients-list.html#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                    active
+                                    @if($category->parent_id == 0)
+                                        Main Category
+                                    @else
+                                        {{$category->subCategory->category_name}}
+                                    @endif
                                 </td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="clients-list.html#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="clients-list.html#" data-toggle="modal" data-target="#edit_client"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="clients-list.html#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                <td>{{$category->order}}</td>
+                                <td>
+                                    @if($category->status == 1)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-danger">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class=" btn btn-info btn-sm">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                    <button class=" btn btn-success btn-sm">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button class=" btn btn-danger btn-sm">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
                                 </td>
                             </tr>
-
+                            @endforeach
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -96,4 +105,22 @@
     <!-- Datatable JS -->
     <script src="{{ asset('public/adminpanel/assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('public/adminpanel/assets/js/dataTables.bootstrap4.min.js')}}"></script>
+{{--    <script>--}}
+{{--       $('.category-datatable').DataTable({--}}
+{{--           processing: true,--}}
+{{--           serverSide: true,--}}
+{{--           sorting: true,--}}
+{{--           searchable: true,--}}
+{{--           responsiveness:true,--}}
+{{--           ajax: "{{ route('category.table') }}",--}}
+{{--           columns: [--}}
+{{--               {data: 'DT_RowIndex', name: 'DT_RowIndex'},--}}
+{{--               {data: 'category_name', name: 'category_name'},--}}
+{{--               {data: 'parent_id', name: 'parent_id'},--}}
+{{--               {data: 'action', name: 'action',--}}
+{{--                   orderable: false--}}
+{{--               },--}}
+{{--               ]--}}
+{{--       });--}}
+{{--    </script>--}}
 @endsection
