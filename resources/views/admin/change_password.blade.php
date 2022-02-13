@@ -22,28 +22,11 @@
                     </div>
                     <!-- /Page Header -->
 
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{$error}}
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                  @include('admin.includes._message')
 
-                    @if(Session::has('success_message'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{Session::get('success_message')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-
-                    <form method="post" action="" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('updatePassword',$user->id) }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">

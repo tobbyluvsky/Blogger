@@ -9,7 +9,7 @@
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
 
-    <title>Blogger | Admin Dashboard</title>
+    <title>@yield('title')</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/adminpanel/assets/img/favicon.png')}}">
@@ -20,11 +20,15 @@
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/font-awesome.min.css')}}">
 
+    <!-- Datatable CSS -->
+    <link rel="stylesheet" href="{{ asset('public/adminpanel/assets/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/adminpanel/assets/css/select2.min.css') }}">
+
     <!-- Lineawesome CSS -->
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/line-awesome.min.css')}}">
 
 {{--    <!-- Chart CSS -->--}}
-{{--    <link rel="stylesheet" href="{{asset('public/adminpanel/assets/plugins/morris/morris.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('public/adminpanel/assets/plugins/morris/morris.css')}}">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/style.css')}}">
@@ -32,6 +36,7 @@
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="{{asset('public/adminpanel/assets/js/html5shiv.min.js')}}"></script>
+
     <script src="{{asset('public/adminpanel/assets/js/respond.min.js')}}"></script>
     <![endif]-->
 </head>

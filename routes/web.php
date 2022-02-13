@@ -35,8 +35,16 @@ Route::prefix('/admin')->group(function (){
         Route::post('/profile/update/{id}','AdminProfileController@profileUpdate')->name('profileUpdate');
         //admin change password
         Route::get('/profile/change_password','AdminProfileController@changePassword')->name('changePassword');
-        //check user password
+        //check admin password iff it matches
         Route::post('/profile/check-password','AdminProfileController@checkPass')->name('checkPass');
+        //update admin password
+        Route::post('/profile/update-password/{id}','AdminProfileController@updatePassword')->name('updatePassword');
+
+
+        //categories
+        Route::get('/category','CategoryController@index')->name('category.index');
+        Route::get('/category/add','CategoryController@addCategory')->name('addCategory');
+        Route::post('/category/store','CategoryController@store')->name('category.store');
 
 
     });
