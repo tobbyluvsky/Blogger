@@ -53,12 +53,51 @@ class CategoryController extends Controller
         if($data['status'] == 1){
             $category->status = 1;
         }else{
-            $category->status = 1;
+            $category->status = 0;
         }
         $category->save();
         Session::flash('success_message','Category page updated successfully');
         return redirect()->back();
     }
+
+    public function edit($id){
+        $myCat = Category::findorFail($id);
+        $categories = Category::where('parent_id',0)->get();
+        return view('admin.category.edit',compact('categories','myCat'));
+    }
+
+
+
+    public function update(Request $request,$id){
+        $data = $request->all();
+        $validateData = $request->validate([
+            'category_name' => 'required|max:255|min:6',
+            'order' => 'required',
+        ]);
+
+        $slug = Str::slug($data['category_name']);
+        $categoryCount = Category::where('slug',$slug)->count();
+        if ($categoryCount > 0){
+            Session::flash('error_message','Category name already exist in our database');
+            return redirect()->back();
+        }
+
+        $category = Category::findorFail($id);
+        $category->category_name = ucwords(strtolower($data['category_name']));
+        $category->slug = Str::slug($data['category_name']);
+        $category->parent_id = $data['parent_id'];
+        $category->order = $data['order'];
+
+        if($data['status'] == 1){
+            $category->status = 1;
+        }else{
+            $category->status = 0;
+        }
+        $category->save();
+        Session::flash('success_message','Category page updated successfully');
+        return redirect()->back();
+    }
+
 
 
 

@@ -68,17 +68,55 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class=" btn btn-info btn-sm">
+                                    <button class=" btn btn-info btn-sm" data-toggle="modal" data-target="#view_category{{$category->id}}">
                                         <i class="fa fa-eye"></i>
                                     </button>
+                                    <a href="{{route('category.edit',$category->id)}}">
                                     <button class=" btn btn-success btn-sm">
                                         <i class="fa fa-pencil"></i>
                                     </button>
+                                    </a>
                                     <button class=" btn btn-danger btn-sm">
                                         <i class="fa fa-trash-o"></i>
                                     </button>
                                 </td>
                             </tr>
+
+
+
+
+                            <!-- Add Department Modal -->
+                            <div id="view_category{{$category->id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="modal-title"><strong>{{$category->category_name}} Details</strong></p>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{$category->category_name}}</p>
+                                            <p>
+                                                @if($category->parent_id == 0)
+                                                    Main Category
+                                                @else
+                                                    {{$category->subCategory->category_name}}
+                                                @endif
+                                            </p>
+                                            <p>
+                                                @if($category->status == 1)
+                                                    <span class="badge bg-success">Active</span>
+                                                @else
+                                                    <span class="badge bg-danger">Inactive</span>
+                                                @endif
+                                            </p>
+                                            <p>{{ $category->order }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Add Department Modal -->
                             @endforeach
                             </tbody>
 

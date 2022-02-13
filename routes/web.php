@@ -45,6 +45,8 @@ Route::prefix('/admin')->group(function (){
         Route::get('/category','CategoryController@index')->name('category.index');
         Route::get('/category/add','CategoryController@addCategory')->name('addCategory');
         Route::post('/category/store','CategoryController@store')->name('category.store');
+        Route::get('/category/edit/{id}','CategoryController@edit')->name('category.edit');
+        Route::post('/category/edit/{id}','CategoryController@update')->name('category.update');
 //        Route::get('/category/table','CategoryController@datatable')->name('category.table');
 //        Route::get('/category/show/{id}','CategoryController@show')->name('category.show');
 

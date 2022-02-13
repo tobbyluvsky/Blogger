@@ -58,10 +58,18 @@ class AdminProfilecontroller extends Controller
             }
         }
 
+        $image_path = 'public/upload/admin/';
+         if (!empty($data['image'])){
+             if (file_exists($image_path.$data['current_image'])){
+                 unlink($image_path.$data['current_image']);
+             }
+         }
+
         $admin->save();
         Session::flash('success_message','Admin profile updated successfully');
         return redirect()->back();
     }
+
 
     public function changePassword(){
         $user = Admin::where('email',Auth::guard('admin')->user()->email)->first();

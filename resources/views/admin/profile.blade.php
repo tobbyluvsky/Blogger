@@ -72,6 +72,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Profile Image</label>
+                                    <input type="hidden" name="current_image" value="{{$admin->image}}">
                                     <input class="form-control" value="" type="file" id="image" name="image" accept="image/*" onchange="readURL(this);" >
                                 </div>
 
