@@ -27,8 +27,13 @@
     <!-- Lineawesome CSS -->
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/line-awesome.min.css')}}">
 
+    <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/sweetalert.css')}}">
+
 {{--    <!-- Chart CSS -->--}}
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/plugins/morris/morris.css')}}">
+
+
+
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{asset('public/adminpanel/assets/css/style.css')}}">

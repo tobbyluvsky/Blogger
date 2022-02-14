@@ -17,6 +17,7 @@
 <script src="{{asset('public/adminpanel/assets/js/select2.min.js')}}"></script>
 <script src="{{asset('public/adminpanel/assets/js/app.js')}}"></script>
 
+
 </body>
 </html>
-<script src=""></script>
+

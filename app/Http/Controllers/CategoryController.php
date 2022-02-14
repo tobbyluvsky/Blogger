@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+
 
 
 class CategoryController extends Controller
@@ -99,6 +101,14 @@ class CategoryController extends Controller
     }
 
 
+    public function deleteCategory($id){
+        $category = Category::findorFail($id);
+        $category->delete();
+        DB::table('categories')->where('parent_id',$id)->delete();
+        Session::flash('success_message','Category page deleted successfully');
+        return redirect()->back();
+
+    }
 
 
 //    public function datatable(){

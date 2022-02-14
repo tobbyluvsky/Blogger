@@ -71,14 +71,15 @@
                                     <button class=" btn btn-info btn-sm" data-toggle="modal" data-target="#view_category{{$category->id}}">
                                         <i class="fa fa-eye"></i>
                                     </button>
+
                                     <a href="{{route('category.edit',$category->id)}}">
                                     <button class=" btn btn-success btn-sm">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     </a>
-                                    <button class=" btn btn-danger btn-sm">
+                                    <a class="btn btn-danger btn-sm deleteRecord" href="javascript:" rel="{{$category->id}}" rel1="delete-category" style="color: white; cursor: pointer;">
                                         <i class="fa fa-trash-o"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -143,7 +144,38 @@
     <!-- Datatable JS -->
     <script src="{{ asset('public/adminpanel/assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('public/adminpanel/assets/js/dataTables.bootstrap4.min.js')}}"></script>
-{{--    <script>--}}
+
+    //sweetalert
+    <script src="{{asset('public/adminpanel/assets/js/sweetalert.min.js')}}"></script>
+    <script src="{{asset('public/adminpanel/assets/js/jquery.sweet-alert.custom.js')}}"></script>
+
+    <script>
+        $(".deleteRecord").click(function () {
+            var SITEURL = '{{URL::to('')}}';
+           var id = $(this).attr('rel');
+           var deleteFunction = $(this).attr('rel1');
+           swal({
+              title: "Are You Sure?",
+              text: "You will not be able to recover this record again?",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonClass: "btn-danger",
+              confirmButtonText: "Yes, Delete it!",
+           },
+               function (){
+               window.location.href = SITEURL + "/admin/category/" + deleteFunction + "/" + id;
+           });
+        });
+    </script>
+
+
+
+
+
+
+
+
+    {{--    <script>--}}
 {{--       $('.category-datatable').DataTable({--}}
 {{--           processing: true,--}}
 {{--           serverSide: true,--}}
