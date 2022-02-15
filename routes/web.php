@@ -50,6 +50,15 @@ Route::prefix('/admin')->group(function (){
         Route::get('/category/delete-category/{id}','CategoryController@deleteCategory')->name('deleteCategory');
 
 
+        //tags
+        Route::get('/tag','TagController@index')->name('tag.index');
+        Route::get('/tag/add','TagController@addTag')->name('addTag');
+        Route::post('/tag/store','TagController@store')->name('tag.store');
+        Route::get('/tag/edit/{id}','TagController@edit')->name('tag.edit');
+        Route::post('/tag/edit/{id}','TagController@update')->name('tag.update');
+        Route::get('/tag/delete-tag/{id}','TagController@deleteTag')->name('deleteTag');
+
+
 
 
 

@@ -29,6 +29,18 @@
                         <span>Categories</span>
                     </a>
                 </li>
+
+
+                    @if(Session::get('admin_page') == 'tag')
+                        @php $active = "active" @endphp
+                    @else
+                        @php $active = "" @endphp
+                    @endif
+                    <li class="{{$active}}">
+                        <a href="{{route('tag.index')}}"><i class="la la-list-alt"></i>
+                            <span>Tags</span>
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
